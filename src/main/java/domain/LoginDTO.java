@@ -4,7 +4,7 @@ public class LoginDTO {
 
 	private String uid;
 	private String upw;
-	
+	 
 	public String getUid() {
 		return uid;
 	}
