@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import domain.LoginVO;
 import domain.MyPageDTO;
+
 import service.MyPageServiceImpl;
 
 /**
@@ -51,8 +52,20 @@ public class MyModiController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		
+		LoginVO vo = new LoginVO();
+		vo.setUid(request.getParameter("uid"));
+		vo.setUname(request.getParameter("uname"));
+		vo.setSchoolname(request.getParameter("schoolname"));
+		vo.setGradeclass(request.getParameter("gradeclass"));
+		vo.setRoute(request.getParameter("route"));
+		vo.setBoardingplace(request.getParameter("boardingplace"));
+		
+		MyPageServiceImpl service = new MyPageServiceImpl();
+		service.update(vo);
+		
+		response.sendRedirect("MyPage");
 	}
 
 }

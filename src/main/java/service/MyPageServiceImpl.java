@@ -6,8 +6,18 @@ import mapper.MyPageMapper;
 
 public class MyPageServiceImpl implements MyPageService{
 
-	public LoginVO read(MyPageDTO dto) {		
+	@Override
+	public LoginVO read(MyPageDTO dto) {
+		// TODO Auto-generated method stub
 		return new MyPageMapper().read(dto);
 	}
 
+	@Override
+	public void update(LoginVO vo) {
+		new MyPageMapper().update(vo);	
+	}
+
+	
+
+	
 }
