@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%
- LoginVO vo = (LoginVO)request.getAttribute("vo");
+ //LoginVO vo = (LoginVO)request.getAttribute("vo");
  %> 
 <!DOCTYPE html>
 <html>
@@ -36,7 +36,7 @@ if (navigator.geolocation) {
         <div class="b01 pd16">
             <div class="oH w100">
                 <div class="name fL">
-                    <b><%=vo.getUname()%></b>님 안녕하세요!
+                    <b>${vo.uname}</b>님 안녕하세요!
                 </div>
                 <div class="fR">
                     <button onclick="location.href='MyModi'">내정보수정</button>
@@ -48,27 +48,27 @@ if (navigator.geolocation) {
             <table>
                 <tr>
                     <td>이름</td>
-                    <td><%=vo.getUname()%></td>
+                    <td>${vo.uname}</td>
                 </tr>
                 <tr>
                     <td>휴대폰 번호</td>
-                    <td><%=vo.getUid() %></td>
+                    <td>${vo.uid}</td>
                 </tr>
                 <tr>
                     <td>학교</td>
-                    <td><%=vo.getSchoolname() %></td>
+                    <td>${vo.schoolname}</td>
                 </tr>
                 <tr>
                     <td>학년반</td>
-                    <td><%=vo.getGradeclass() %></td>
+                    <td>${vo.gradeclass}</td>
                 </tr>
                 <tr>
                     <td>노선</td>
-                    <td><%=vo.getRoute() %></td>
+                    <td>${vo.route}</td>
                 </tr>
                 <tr>
                     <td>탑승장소</td>
-                    <td><%=vo.getBoardingplace() %></td>
+                    <td>${vo.boardingplace}</td>
                 </tr>
             </table>
         </div>
@@ -120,6 +120,7 @@ setTimeout(function coupon(){
 		.always(function(xhr, status) { 
 			//$("#txtHint").html("요청이 완료되었습니다!"); 
 		});
+	setTimeout(coupon(),1000);
 },1000);
 </script>    
 </body>
