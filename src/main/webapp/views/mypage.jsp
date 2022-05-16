@@ -1,11 +1,11 @@
 <%@page import="domain.LoginVO"%>
 <%@page import="java.sql.*"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%
- //LoginVO vo = (LoginVO)request.getAttribute("vo");
- %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+ ${vo}
+  
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +36,7 @@ if (navigator.geolocation) {
         <div class="b01 pd16">
             <div class="oH w100">
                 <div class="name fL">
-                    <b>${vo.uname}</b>님 안녕하세요!
+                    <b><c:out value="${vo.uname}"/></b>님 안녕하세요!
                 </div>
                 <div class="fR">
                     <button onclick="location.href='MyModi'">내정보수정</button>
@@ -48,23 +48,23 @@ if (navigator.geolocation) {
             <table>
                 <tr>
                     <td>이름</td>
-                    <td>${vo.uname}</td>
+                    <td><c:out value="${vo.uname}"/></td>
                 </tr>
                 <tr>
                     <td>휴대폰 번호</td>
-                    <td>${vo.uid}</td>
+                    <td><c:out value="${fn:substring(vo.uid,0,3)}-${fn:substring(vo.uid,3,7)}-${fn:substring(vo.uid,7,11)}"/></td>
                 </tr>
                 <tr>
                     <td>학교</td>
-                    <td>${vo.schoolname}</td>
+                    <td><c:out value="${vo.schoolname}"/></td>
                 </tr>
                 <tr>
                     <td>학년반</td>
-                    <td>${vo.gradeclass}</td>
+                    <td><c:out value="${vo.gradeclass}"/></td>
                 </tr>
                 <tr>
                     <td>노선</td>
-                    <td>${vo.route}</td>
+                    <td><c:out value="${vo.route}"/></td>
                 </tr>
                 <tr>
                     <td>탑승장소</td>
@@ -74,12 +74,12 @@ if (navigator.geolocation) {
         </div>
 
         <div class="b02 pd16">
-            <a href="bus.jsp" class="mb16 qrbtn">
+            <a href="Bus?uid=${vo.uid }" class="mb16 qrbtn">
                 <img src="views/img//img01.png">QR 승하차 체크하기<img src="views/img//ico_arrow.png" class="fR">
             </a>
             <div class="mb16">
                 <img src="views/img//img02.png">잔여 이용 횟수
-                <span class="fR"><b>4</b>회</span>
+                <span class="fR"><b>${vo.coupon }</b>회</span>
             </div>
             <a href="map.jsp" class="mb16" id="map">
                 <img src="views/img//img03.png">실시간 버스 위치<img src="views/img//ico_arrow2.png" class="fR">
@@ -97,31 +97,11 @@ if (navigator.geolocation) {
     <div class="FAB">
         <ul class="ulFl">
             <li class="on"><a href="mypage.jsp"><img src="views/img//ico01_on.png"><p>내정보</p></a></li>
-            <li><a href="bus.jsp"><img src="views/img//ico02.png"><p>버스탑승</p></a></li>
+            <li><a href="Bus?uid=${vo.uid }"><img src="views/img//ico02.png"><p>버스탑승</p></a></li>
             <li><a href="List"><img src="views/img//ico03.png"><p>이용내역</p></a></li>
         </ul>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-setTimeout(function coupon(){
 
-	$.ajax({ 
-		url: "getCoupon.jsp", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
-		//data: { name: "홍길동" }, // HTTP 요청과 함께 서버로 보낼 데이터 
-		method: "GET", // HTTP 요청 메소드(GET, POST 등) 
-		dataType: "text" // 서버에서 보내줄 데이터의 타입 
-		}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨. 
-		.done(function(text) { 
-			$("#txtHint").text(text); 
-		}) // HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨. 
-		.fail(function(xhr, status, errorThrown) { 
-			$("#txtHint").text("오류가 발생했다.");
-		}) // done or fail 을 무시하고 항상 수행.
-		.always(function(xhr, status) { 
-			//$("#txtHint").html("요청이 완료되었습니다!"); 
-		});
-	setTimeout(coupon(),1000);
-},1000);
-</script>    
 </body>
 </html>

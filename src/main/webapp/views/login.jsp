@@ -27,7 +27,7 @@
         </div>
 
         <div class="cscenter">
-            <a href="join01.jsp">회원가입</a>
+            <a href="Join01">회원가입</a>
         </div>
     </div>
 </body>

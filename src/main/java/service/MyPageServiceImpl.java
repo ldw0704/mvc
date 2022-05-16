@@ -17,6 +17,16 @@ public class MyPageServiceImpl implements MyPageService{
 		new MyPageMapper().update(vo);	
 	}
 
+	public void insert(LoginVO vo) {
+		new MyPageMapper().insert(vo);
+		
+	}
+
+	public LoginVO read(String uid) {
+		// TODO Auto-generated method stub
+		return new MyPageMapper().read(uid);
+	}
+
 	
 
 	
